@@ -1,21 +1,23 @@
-// zorg eerst dat je NodeJS hebt geinstalleerd op je laptop. Zie www.nodejs.org > download 
-// uitvoeren in een terminal (console, commandline) met node <filename.js>, bijvoorbeeld $ node 1fibonacci.js
+function RunFibonacci() {
+    const results = [0, 1];
+    for (let i = 0; i < 18; i++) {
+        eerste = results[i];
+        tweede = results[i + 1];
+        nieuw_getal = eerste + tweede;
+        results.push(nieuw_getal);
+    }
 
-console.log("*** Running script: 1fibonacci.js ***");
-console.log("");
-
-const results = [0, 1];
-console.log("Start: ", results);
-
-for (let i = 0; i < 18; i++) {
-
-    console.log("Ronde: " + i);
-
-    eerste = results[i];
-    tweede = results[i + 1];
-    nieuw_getal = eerste + tweede;
-    results.push(nieuw_getal);
-
-    console.log("  Results:", results);
-    console.log("------");
+    if (typeof window === 'undefined') {
+        // running standalone (node)
+        console.log("*** Running script: " + __filename + " using node version: " + process.version + " ***");
+        console.log("Results: ", results);
+    } else {
+        // running in browser
+        console.log("*** Running fibonacci script in browser ***")
+        console.log(navigator.userAgent)
+        console.log(__jscript_version)
+        document.getElementById('result').innerHTML = results.join("\n");
+    }
 }
+
+if (typeof window === 'undefined') RunFibonacci();
